@@ -120,7 +120,7 @@ public class TicTacToe {
 
         for (int i = 0; i < 3; i++) {
             if ((arr[i][0].equals(player) && arr[i][1].equals(player) && arr[i][2].equals(player)) ||
-                    (arr[1][i].equals(player) && arr[2][i].equals(player) && arr[3][i].equals(player))) {
+                    (arr[0][i].equals(player) && arr[1][i].equals(player) && arr[2][i].equals(player))) {
                 return true;
             }
         }
@@ -142,7 +142,7 @@ public class TicTacToe {
         return true;
     }
 
-    public static boolean makeMove(String[][] arr, int choice, String player) {
+    public static void makeMove(String[][] arr, int choice, String player) {
         switch (choice) {
             case 1 -> topLeft(arr, player);
             case 2 -> midLeft(arr, player);
@@ -155,10 +155,8 @@ public class TicTacToe {
             case 9 -> bottomRight(arr, player);
             default -> {
                 System.out.println("Invalid choice. Please try again.");
-                return true;
             }
         }
-        return true;
     }
 
     public static void printMenu() {
@@ -173,7 +171,6 @@ public class TicTacToe {
                 7: Top Right
                 8: Mid Right
                 9: Bottom Right
-                0: Exit
                 """);
     }
 
