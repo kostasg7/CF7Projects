@@ -13,11 +13,19 @@ public class TicTacToe {
                 arr[i][j] = "-";
             }
         }
-
+        printMenu();
         while (true) {
-            printMenu();
             printArray(arr);
-            int choice = getChoice(in.nextInt());
+            int choice;
+            while (true) {
+                System.out.println("Please enter your choice (1-9):");
+                choice = in.nextInt();
+                if (choice >= 1 && choice <= 9) {
+                    break;
+                } else {
+                    System.out.println("Invalid choice. Please try again.");
+                }
+            }
             if (playerTurn == 1) {
                 if (isPlaceTaken(arr, choice)){
                     System.out.println("Place taken, try again\n");
@@ -65,10 +73,6 @@ public class TicTacToe {
         return "O";
     }
 
-    public static int getChoice(int num) {
-        return num;
-    }
-
     public static void printArray(String[][] arr) {
         int rows = arr.length;
         int cols = arr[0].length;
@@ -84,31 +88,31 @@ public class TicTacToe {
     public static boolean isPlaceTaken(String[][] arr, int choice) {
         switch (choice) {
             case 1 -> {
-                return !arr[0][0].equals("-");
-            }
-            case 2 -> {
-                return !arr[1][0].equals("-");
-            }
-            case 3 -> {
                 return !arr[2][0].equals("-");
             }
+            case 2 -> {
+                return !arr[2][1].equals("-");
+            }
+            case 3 -> {
+                return !arr[2][2].equals("-");
+            }
             case 4 -> {
-                return !arr[0][1].equals("-");
+                return !arr[1][0].equals("-");
             }
             case 5 -> {
                 return !arr[1][1].equals("-");
             }
             case 6 -> {
-                return !arr[2][1].equals("-");
-            }
-            case 7 -> {
-                return !arr[0][2].equals("-");
-            }
-            case 8 -> {
                 return !arr[1][2].equals("-");
             }
+            case 7 -> {
+                return !arr[0][0].equals("-");
+            }
+            case 8 -> {
+                return !arr[0][1].equals("-");
+            }
             case 9 -> {
-                return !arr[2][2].equals("-");
+                return !arr[0][2].equals("-");
             }
             default -> {
                 return true;
@@ -144,15 +148,15 @@ public class TicTacToe {
 
     public static void makeMove(String[][] arr, int choice, String player) {
         switch (choice) {
-            case 1 -> topLeft(arr, player);
-            case 2 -> midLeft(arr, player);
-            case 3 -> bottomLeft(arr, player);
-            case 4 -> topMid(arr, player);
+            case 1 -> bottomLeft(arr, player);
+            case 2 -> bottomMid(arr, player);
+            case 3 -> bottomRight(arr, player);
+            case 4 -> midLeft(arr, player);
             case 5 -> midMid(arr, player);
-            case 6 -> bottomMid(arr, player);
-            case 7 -> topRight(arr, player);
-            case 8 -> midRight(arr, player);
-            case 9 -> bottomRight(arr, player);
+            case 6 -> midRight(arr, player);
+            case 7 -> topLeft(arr, player);
+            case 8 -> topMid(arr, player);
+            case 9 -> topRight(arr, player);
             default -> {
                 System.out.println("Invalid choice. Please try again.");
             }
@@ -162,15 +166,15 @@ public class TicTacToe {
     public static void printMenu() {
         System.out.println("""
                 Please enter a choice:
-                1: Top left
-                2: Mid Left
-                3: Bottom left
-                4: Top Mid
+                1: Bottom left
+                2: Bottom Mid
+                3: Bottom right
+                4: Middle Left
                 5: Middle Mid
-                6: Bottom Mid
-                7: Top Right
-                8: Mid Right
-                9: Bottom Right
+                6: Middle Right
+                7: Top Left
+                8: Top Mid
+                9: Top Right
                 """);
     }
 
